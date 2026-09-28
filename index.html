@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La gira de LHDD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main id="app">
+  <div id="stage">
+    <canvas id="game" aria-label="Juego de LHDD"></canvas>
+
+    <section class="screen" id="s-title">
+      <h1>La gira de LHDD</h1>
+      <div class="lineup" id="lineup"></div>
+      <p>Los Hijos del Dueño llegan tarde al show. Elegí a un músico, saltá los equipos que hay en la vereda, juntá púas y aguantá hasta que termine el tema.</p>
+      <button class="btn" id="b-start">Elegir músico</button>
+      <p class="hint">Saltás con espacio, flecha arriba o tocando la pantalla. Si lo mantenés apretado, saltás más alto.</p>
+      <p class="hint rotate">Girá el celu para jugar más cómodo.</p>
+    </section>
+
+    <section class="screen" id="s-chars" hidden>
+      <h2>¿Quién corre?</h2>
+      <div class="cards" id="cards"></div>
+      <button class="btn ghost" data-go="s-title">Volver</button>
+    </section>
+
+    <section class="screen" id="s-songs" hidden>
+      <div class="who" id="who"></div>
+      <h2>Elegí el tema</h2>
+      <div class="songs" id="songs"></div>
+      <button class="btn ghost" data-go="s-chars">Cambiar músico</button>
+    </section>
+
+    <section class="screen" id="s-pause" hidden>
+      <h2>Pausa</h2>
+      <div class="row">
+        <button class="btn" id="b-resume">Seguir</button>
+        <button class="btn ghost" id="b-quit">Salir al menú</button>
+      </div>
+    </section>
+
+    <section class="screen" id="s-end" hidden>
+      <h2 id="end-title"></h2>
+      <p id="end-rank"></p>
+      <div class="stats" id="end-stats"></div>
+      <div class="row">
+        <button class="btn" id="b-again">Otra vez</button>
+        <button class="btn ghost" data-go="s-songs">Cambiar tema</button>
+        <button class="btn ghost" data-go="s-chars">Cambiar músico</button>
+      </div>
+    </section>
+
+    <button class="icon" id="b-pause" aria-label="Pausar" hidden>II</button>
+  </div>
+</main>
+
+<script src="js/charts.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
