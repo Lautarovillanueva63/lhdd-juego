@@ -1,0 +1,13 @@
+/* Estilos que solo usa "Buscando algún lío". El resto viene de ../css/style.css */
+a.btn{text-decoration:none;display:inline-block}
+.kicker{font-family:Bungee, Impact, sans-serif;color:var(--amber);letter-spacing:.08em}
+
+/* Botón de habilidad (solo aparece con Mezita, que tiene el grito) */
+.skill{position:absolute;right:clamp(8px,2cqw,22px);bottom:clamp(8px,2cqw,22px);
+  font-family:Bungee, Impact, sans-serif;font-size:clamp(12px,2cqw,20px);
+  background:#7ee081;color:var(--ink);border:0;border-radius:999px;
+  padding:.7em 1.1em;box-shadow:.15em .15em 0 var(--ink);opacity:.92}
+.skill[hidden]{display:none}
+.skill:disabled{background:var(--muted);opacity:.5}
+/* En la compu (mouse) no hace falta el botón: se usa la barra espaciadora */
+@media (hover:hover) and (pointer:fine){ .skill{display:none} }

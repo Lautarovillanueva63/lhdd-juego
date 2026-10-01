@@ -4,7 +4,7 @@
 const CHARS = [
   { id:'keys', name:'Agus',      inst:'Teclado',   skill:'Imán de púas', desc:'Las púas cercanas vuelan hacia vos.', color:'#3fd0c9' },
   { id:'bass', name:'Chanchi',   inst:'Bajo',      skill:'Vida extra',   desc:'Arrancás con 4 vidas.',               color:'#ffb627' },
-  { id:'gtr1', name:'gaspi', inst:'Guitarra',  skill:'Salto largo',  desc:'Saltás más alto y flotás más.',       color:'#ff4f79' },
+  { id:'gtr1', name:'Gaspi', inst:'Guitarra',  skill:'Salto largo',  desc:'Saltás más alto y flotás más.',       color:'#ff4f79' },
   { id:'gtr2', name:'Fran', inst:'Guitarra',  skill:'Púas dobles',  desc:'Cada púa suma el doble.',             color:'#a58bff' },
   { id:'voz',  name:'Mezita',      inst:'Micrófono', skill:'Doble salto',  desc:'Podés saltar otra vez en el aire.',   color:'#7ee081' },
 ];
@@ -259,13 +259,13 @@ function resize(){
 }
 addEventListener('resize', resize);
 
-function faceCircle(id, x, y, r, stroke){
-  const im = faces[id];
-  ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.closePath();
-  ctx.fillStyle = '#140b22'; ctx.fill(); ctx.clip();
-  if (im.complete) ctx.drawImage(im, x - r, y - r, r*2, r*2);
+// Dibuja la cara recortada (sin círculo). Le ponemos una sombrita para que se despegue del fondo.
+function drawFace(id, x, y, r){
+  const im = faces[id]; if (!im.complete) return;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 6; ctx.shadowOffsetY = 3;
+  ctx.drawImage(im, x - r, y - r, r*2, r*2);
   ctx.restore();
-  if (stroke){ ctx.lineWidth = 3; ctx.strokeStyle = stroke; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.stroke(); }
 }
 function rrect(x, y, w, h, r){ ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
 
@@ -315,7 +315,7 @@ function drawWorld(d, pulse, light){
     ctx.fillStyle = c.color; ctx.fillRect(-42, -58, 84, 116);
     ctx.restore();
     ctx.save(); ctx.translate(x + 48, 380); ctx.rotate(((i * 37) % 7 - 3) * 0.012);
-    faceCircle(c.id, 0, -14, 28, '#140b22');
+    drawFace(c.id, 0, -14, 28);
     ctx.fillStyle = '#140b22'; ctx.font = '20px Bungee, Impact, sans-serif'; ctx.textAlign = 'center';
     ctx.fillText('LHDD', 0, 38);
     ctx.font = '600 10px Archivo, sans-serif'; ctx.fillText('en vivo', 0, 52);
@@ -443,7 +443,7 @@ function drawMusician(c, x, y, run, air){
 
   // cabeza grande con la foto
   const hx = x + 2, hy = y - 112 + bob;
-  faceCircle(c.id, hx, hy, 32, '#fff4dc');
+  drawFace(c.id, hx, hy, 34);
 
   if (c.id === 'voz'){  // micrófono delante de la boca
     line(x + 27, y - 88 + bob, x + 31, y - 102 + bob, 6, '#2b2440');
